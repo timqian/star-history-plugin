@@ -34,7 +34,7 @@ async function generateUrls(repo) {
   const link = initRes.headers.link;
 
   if (!link) {
-    throw 'Too few stars!';
+    throw 'Too few stars (less than 30)!';
   }
 
   const pageNum = /next.*?page=(\d*).*?last/.exec(link)[1]; // total page number

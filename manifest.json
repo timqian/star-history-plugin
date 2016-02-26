@@ -6,7 +6,7 @@
   "version": "1.0",
 
   "browser_action": {              // 会出现在地址栏右边，如果是 page_action 则出现在地址栏中
-    "default_icon": "ico.png",
+    "default_icon": "./assects/ico.png",
     "default_popup": "popup.html"    // 点击icon popup 出来的 html
   },
   "permissions": [
