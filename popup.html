@@ -2,10 +2,45 @@
 <html>
   <head>
     <title>Star History</title>
+    <link href="./assects/nvd3.css" rel="stylesheet" type="text/css">
+    <style>
+      #chart,
+      svg {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-right: 20pt;
+        width: 700px;
+        height: 500px;
+      }
+
+      #theGif {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 230px;
+      }
+      h2 {
+        text-align:center;
+      }
+    </style>
   </head>
   <body>
-    hi, Tim, how are you?
-    <div id="status"></div>
+    <h2 style="background-position:top center;">Star History</h2>
+    <div id="container" style="width:730px; height:500px;">
+      <div id="chart">
+        <svg></svg>
+      </div>
+      <img src="./assects/loadinfo.net.gif" alt="Loding..." id="theGif">
+      <a href="https://github.com/timqian/star-history-plugin"
+        style="position: absolute; bottom: 2px; right:5px;">
+        source code
+      </a>
+      <a href="http://timqian.com/star-history"
+      style="position: absolute; bottom: 2px; left:5px;">
+        Website
+      </a>
+    </div>
     <script src="./build/bundle.js"></script>
   </body>
 </html>

@@ -10,6 +10,7 @@
     "default_popup": "popup.html"    // 点击icon popup 出来的 html
   },
   "permissions": [
+    "tabs",
     "activeTab",                 // see the URL of the current tab
     "https://api.github.com/"   // gives access to this hosts(只要在这里申请权限，就可以做对该 url 做 Cross-Origin XMLHttpRequest了)
   ]
