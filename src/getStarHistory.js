@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// https://github.com/blog/1509-personal-api-tokens
 const access_token = ['9da45c0ed04c77c47278bb260d7c6b6c2c9b9fa8', 'd96ed1e68bec80e725db8f23327a96839def67a6', '569e1881d1b810c39e35c650f056ea6fac05a400'];
 
 const axiosGit = axios.create({
