@@ -1,9 +1,9 @@
 
-# ![](./assects/ico.png) star history
+# ![](./assets/ico.png) star history
 A chrome extension showing star history graph of github repository
 
 ## Screenshot
-![](./assects/screenShot.png)
+![](./assets/screenShot.png)
 
 ## Install
 
