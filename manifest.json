@@ -5,13 +5,13 @@
   "description": "A chrome extension showing star history graph of current github repository",
   "version": "1.0",
 
-  "browser_action": {              // 会出现在地址栏右边，如果是 page_action 则出现在地址栏中
+  "browser_action": {
     "default_icon": "./assets/ico.png",
-    "default_popup": "popup.html"    // 点击icon popup 出来的 html
+    "default_popup": "popup.html"
   },
   "permissions": [
     "tabs",
-    "activeTab",                 // see the URL of the current tab
-    "https://api.github.com/"   // gives access to this hosts(只要在这里申请权限，就可以做对该 url 做 Cross-Origin XMLHttpRequest了)
+    "activeTab",                 
+    "https://api.github.com/"
   ]
 }
