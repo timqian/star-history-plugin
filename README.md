@@ -1,3 +1,4 @@
+> As a website: http://www.timqian.com/star-history/
 
 # ![](./assets/ico.png) star history
 A chrome extension showing star history graph of github repository
@@ -10,8 +11,6 @@ Install it [manually](http://superuser.com/questions/247651/how-does-one-install
 ## Screenshot
 ![](./assets/screenShot.png)
 
-## As a website:
-http://www.timqian.com/star-history/
 
 ## License
 
