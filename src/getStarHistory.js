@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // https://github.com/blog/1509-personal-api-tokens
-const access_token = ['9da45c0ed04c77c47278bb260d7c6b6c2c9b9fa8', 'd96ed1e68bec80e725db8f23327a96839def67a6', '569e1881d1b810c39e35c650f056ea6fac05a400'];
+const access_token = ['ee3a172df9aaa8c858b5585ca53391cec47b20c0', 'da9f64e669b91d89f5abe19b313ab07a54b7c974', '31eee536d05b169b3e184e152d18775f7166123b', '9da45c0ed04c77c47278bb260d7c6b6c2c9b9fa8', 'd96ed1e68bec80e725db8f23327a96839def67a6', '569e1881d1b810c39e35c650f056ea6fac05a400'];
 
 const axiosGit = axios.create({
   headers: {
@@ -12,7 +12,7 @@ const axiosGit = axios.create({
   },
 });
 
-const sampleNum = 18; // number of sample requests to do
+const sampleNum = 15; // number of sample requests to do
 
 /**
  * generate Urls and pageNums
@@ -25,13 +25,16 @@ async function generateUrls(repo) {
 
   const initUrl = `https://api.github.com/repos/${repo}/stargazers`;   // used to get star infors
   const initRes = await axiosGit.get(initUrl).catch(res => {
-    throw 'No such repo!';
+    throw 'No such repo or network error!';
   });
 
-  /* link Sample (no link when star < 30):
-    <https://api.github.com/repositories/40237624/stargazers?access_token=2e71ec1017dda2220ccba0f6922ecefd9ea44ac7&page=2>;
-    rel="next", <https://api.github.com/repositories/40237624/stargazers?access_token=2e71ec1017dda2220ccba0f6922ecefd9ea44ac7&page=4>; rel="last"
-  */
+  /** 
+   * link Sample (no link when star < 30):
+   * <https://api.github.com/repositories/40237624/stargazers?access_token=2e71ec1017dda2220ccba0f6922ecefd9ea44ac7&page=2>;
+   * rel="next", 
+   * <https://api.github.com/repositories/40237624/stargazers?access_token=2e71ec1017dda2220ccba0f6922ecefd9ea44ac7&page=4>; 
+   * rel="last"
+   */
   const link = initRes.headers.link;
 
   if (!link) {
@@ -48,7 +51,7 @@ async function generateUrls(repo) {
     }
   } else {
     for (let i = 1; i <= sampleNum; i++) {
-      let pageIndex = Math.round(i / sampleNum * pageNum) - 1; //for bootstrap bug
+      let pageIndex = Math.round(i / sampleNum * pageNum) - 1; // for bootstrap bug
       pageIndexes.push(pageIndex);
       sampleUrls.push(initUrl + '?page=' + pageIndex);
     }
@@ -72,9 +75,10 @@ async function getStarHistory(repo) {
   // promisese to request sampleUrls
   const getArray = sampleUrls.map(url => axiosGit.get(url));
 
-  const resArray = await Promise.all(getArray).catch(res => {
-    throw 'Github api limit exceeded, Try in the new hour!'
-  });
+  const resArray = await Promise.all(getArray)
+    .catch(res => {
+      throw 'Github api limit exceeded, Try in the new hour!'
+    });
 
   const starHistory = pageIndexes.map((p, i) => {
     return {
@@ -82,6 +86,23 @@ async function getStarHistory(repo) {
       starNum: 30 * (p - 1),
     };
   });
+
+ // Better view for less star repos (#28) and for repos with too much stars (>40000)
+  const resForStarNum = await axiosGit.get(`https://api.github.com/repos/${repo}`)
+    .catch(res => {
+      throw 'Github api limit exceeded, Try in the new hour!'
+    });
+  const starNumToday = resForStarNum.data.stargazers_count;
+  const today = new Date()
+  const monthFormat = today.getMonth() + 1 > 10 ? today.getMonth() + 1 : `0${today.getMonth() + 1}`
+  const dateFormat = today.getDate() > 10 ? today.getDate() : `0${today.getDate()}`
+
+  starHistory.push({
+    date: `${today.getFullYear()}-${monthFormat}-${dateFormat}`,
+    starNum: starNumToday
+  })
+
+console.log('starNumToday')
 
   return starHistory;
 }
