@@ -22,14 +22,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
   console.assert(typeof url == 'string', 'tab.url should be a string');
 
   // get repo from tab url
-  let repo;
-  try {
-    repo = /github.com\/(\S*?\/\S*?)[\/#?]/.exec(url)[1];
-  } catch (err) {
-    document.getElementById('container').innerHTML = '<h2>No repo found</h2>';
-    throw 'no repo found';
-  }
-
+  let repo = /github.com\/(\S*?\/\S*?)[\/#?]/.exec(url)[1];
   console.log("repo", repo);
 
   const starHistory = await getStarHistory(repo).catch(e => { document.getElementById('container').innerHTML = `<h2>${e}</h2>`;});

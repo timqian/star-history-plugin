@@ -8,9 +8,13 @@
   "icons": {
     "128": "assets/ico.png"
   },
-  "browser_action": {
+  "page_action": {
     "default_icon": "./assets/ico.png",
     "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
   },
   "permissions": [
     "tabs",
