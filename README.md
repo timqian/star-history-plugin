@@ -5,8 +5,7 @@ A chrome extension showing star history graph of github repository
 
 ## Install
 
-Install it [manually](http://superuser.com/questions/247651/how-does-one-install-an-extension-for-chrome-browser-from-the-local-file-system/247654#247654
-) or from the Chrome Web Store(unfinished)
+[Download the crx file](https://raw.githubusercontent.com/kymtwyf/star-history-plugin/master/star-history-plugin-latest.crx) and [drag & drop](https://stackoverflow.com/a/11879334/2428562) to `chrome://extensions` to install or from the Chrome Web Store(unfinished)
 
 ## Screenshot
 ![](./assets/screenShot.png)
