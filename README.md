@@ -1,3 +1,5 @@
+> Deprecated, project moved to https://github.com/timqian/star-history
+
 # ![](./assets/ico.png) Star history
 
 A chrome extension showing star history graph of github repository
