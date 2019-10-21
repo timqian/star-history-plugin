@@ -30,7 +30,7 @@
     "webpack": "^1.12.14"
   },
   "dependencies": {
-    "axios": "^0.9.1",
+    "axios": "^0.19.0",
     "babel-polyfill": "^6.5.0",
     "d3": "^3.5.16",
     "es6-promisify": "^3.0.0",
